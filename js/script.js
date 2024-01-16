@@ -20,6 +20,7 @@ $.ajax({
       const productImg = item.Item.mediumImageUrls[0].imageUrl;
       const shopURL = item.Item.shopUrl;
       const shopName = item.Item.shopName;
+      let lowestPriceMark = '';
 
       // "数字 + L", "数字 + l", "数字 + リットル"という文字列があれば、その前の数字を抜き出す
       // \d+(?:\.\d+)?: 符号なし0省略なしの実数
@@ -31,10 +32,21 @@ $.ajax({
         const pricePerLiter = parseInt(productPrice)/parseFloat(capacityNum);
         const roundedPrice = Math.round(pricePerLiter);
         pricePerLiterMes = `<span class="big-emphasis">${roundedPrice}円</span>`;
+
+        // 最安値を比較
+        let lowestPrice = 0;
+        if(lowestPrice >= roundedPrice) {
+          lowestPrice = roundedPrice;
+          console.log("最安値:", lowestPrice);
+          lowestPriceMark = `<div class="lowest-mark-inner">
+            <div class="lowest-mark"><p>最安値</p></div>
+          </div>`;
+        }
       }
 
       const product = `<li class="product-detail">
-      <p><a target="_blank" href="${productURL}">商品名: ${productName}</a></p>
+      <p>商品名: <a target="_blank" href="${productURL}">${productName}</a></p>
+      <div class="lowest-mark-wrap">${lowestPriceMark}</div>
       <table>
         <tr>
           <th>商品画像</th>
@@ -49,7 +61,7 @@ $.ajax({
           <td>${pricePerLiterMes}</td>
         </tr>
       </table>
-      <p><a target="_blank" href="${shopURL}">ショップ名: ${shopName}</a></p>
+      <p>ショップ名: <a target="_blank" href="${shopURL}">${shopName}</a></p>
       </li>`;
       $('#products').append(product);
     }
