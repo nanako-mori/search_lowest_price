@@ -54,14 +54,10 @@ th {
     width: 100%;
   }
 }
-.big-emphasis,
-.emphasis {
+.big-emphasis {
   color: #BF0000;
   font-weight: bold;
 }
 .big-emphasis {
   font-size: 24px;
-}
-.price-per-liter {
-  font-size: 20px;
 }
