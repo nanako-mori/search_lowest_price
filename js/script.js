@@ -11,6 +11,7 @@ $.ajax({
   }
 })
 .done(function(data){
+  let min = Infinity, max = -Infinity;
   data.Items.forEach(function(item, index){
     // 猫砂以外が検索結果に表示されるのを防ぐため、ジャンルIDが猫砂の場合に限定する
     if(item.Item.genreId === "204174") {
@@ -34,15 +35,18 @@ $.ajax({
         pricePerLiterMes = `<span class="big-emphasis">${roundedPrice}円</span>`;
 
         // 最安値を比較
-        let lowestPrice = 0;
-        if(lowestPrice >= roundedPrice) {
-          lowestPrice = roundedPrice;
-          console.log("最安値:", lowestPrice);
-          lowestPriceMark = `<div class="lowest-mark-inner">
-            <div class="lowest-mark"><p>最安値</p></div>
-          </div>`;
+        if(roundedPrice < min) {
+          min = roundedPrice;
+        }
+        if(roundedPrice > max) {
+          max = roundedPrice;
         }
       }
+      console.log(`max: ${max}`);
+      console.log(`min: ${min}`);
+      // lowestPriceMark = `<div class="lowest-mark-inner">
+      // <div class="lowest-mark"><p>最安値</p></div>
+      // </div>`;
 
       const product = `<li class="product-detail">
       <p>商品名: <a target="_blank" href="${productURL}">${productName}</a></p>
