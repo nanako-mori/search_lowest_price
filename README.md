@@ -2,7 +2,7 @@
 楽天市場で販売されている最も安い紙の猫砂を検索し出力する
 
 ## 概要
-![search_lowest_price1](https://github.com/nanako-mori/search_lowest_price/assets/78296753/8f50034b-a85b-4e4e-9bb4-47af6357adf3)
+![search_lowest_price1](https://github.com/nanako-mori/search_lowest_price/assets/78296753/01aea3a6-1ebf-49a3-bb1e-1d43855a1c63)
 
 楽天市場で猫砂（紙）ジャンルに分類されている商品を、価格が安い順に抽出する
 
